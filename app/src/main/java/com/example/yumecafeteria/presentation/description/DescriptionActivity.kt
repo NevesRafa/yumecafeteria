@@ -24,7 +24,6 @@ class DescriptionActivity : AppCompatActivity() {
         }
     }
 
-
     private fun loadDescription(product: Product) {
         binding.productDescriptionImage.setImageResource(R.drawable.cappucino)
         binding.productDescription.text = product.description
