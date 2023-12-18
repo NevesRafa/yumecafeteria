@@ -30,6 +30,11 @@ class MenuActivity : AppCompatActivity() {
         viewModel.loadProductsList()
     }
 
+    override fun onStart() {
+        super.onStart()
+        cartUpdate()
+    }
+
     private fun setupViewModel() {
         viewModel.loadStateLiveData.observe(this) { state ->
             when (state) {
@@ -45,7 +50,7 @@ class MenuActivity : AppCompatActivity() {
             viewModel.saveListProduct()
         }
         hideLoading()
-        adapter.addCharacterList(result)
+        adapter.addProductList(result)
     }
 
     private fun showLoading() {
@@ -76,6 +81,17 @@ class MenuActivity : AppCompatActivity() {
         binding.btnCart.setOnClickListener {
             val intent = Intent(this, CartActivity::class.java)
             startActivity(intent)
+        }
+    }
+
+    private fun cartUpdate() {
+        val cartList = viewModel.cartList
+
+        if (cartList.isNotEmpty()) {
+            binding.badgeGroup.visibility = View.VISIBLE
+            binding.badgeText.text = cartList.size.toString()
+        } else {
+            binding.badgeGroup.visibility = View.GONE
         }
     }
 }

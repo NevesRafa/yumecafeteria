@@ -22,4 +22,7 @@ interface ProductDao {
     @Update
     fun update(order: Product)
 
+    @Query("SELECT * FROM product WHERE id = :id")
+    fun searchId(id: Int): Product
+
 }

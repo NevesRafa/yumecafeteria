@@ -3,15 +3,21 @@ package com.example.yumecafeteria.presentation.menu
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.yumecafeteria.domain.CartRepository
 import com.example.yumecafeteria.domain.MenuRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class MenuViewModel(private val repository: MenuRepository) : ViewModel() {
+class MenuViewModel(
+    private val repository: MenuRepository,
+    private val cartRepository: CartRepository
+) : ViewModel() {
 
     val loadStateLiveData = MutableLiveData<MenuState>()
+
+    val cartList = cartRepository.productCartList
 
     fun loadProductsList() {
         viewModelScope.launch {

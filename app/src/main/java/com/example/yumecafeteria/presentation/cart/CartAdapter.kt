@@ -23,7 +23,7 @@ class CartAdapter(private val onProductClick: (Product) -> Unit) : RecyclerView.
 
     override fun getItemCount() = dataset.size
 
-    fun addCharacterList(list: List<Product>) {
+    fun update(list: List<Product>) {
         dataset.addAll(list)
         notifyDataSetChanged()
     }

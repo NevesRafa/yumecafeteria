@@ -70,6 +70,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:elevation="3dp"
+        android:visibility="gone"
         app:constraint_referenced_ids="badge_cart, badge_text" />
 
     <androidx.recyclerview.widget.RecyclerView

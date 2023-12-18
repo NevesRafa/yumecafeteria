@@ -7,12 +7,15 @@ import com.example.yumecafeteria.R
 import com.example.yumecafeteria.data.model.Product
 import com.example.yumecafeteria.databinding.ActivityDescriptionBinding
 import com.example.yumecafeteria.presentation.cart.CartActivity
+import org.koin.android.ext.android.inject
 
 class DescriptionActivity : AppCompatActivity() {
 
     companion object {
         const val EXTRA_PRODUCT_DESCRIPTION = "extra.product.description"
     }
+
+    private val viewModel: DescriptionViewModel by inject()
 
     private lateinit var binding: ActivityDescriptionBinding
 
@@ -39,7 +42,7 @@ class DescriptionActivity : AppCompatActivity() {
     private fun addProductToCart(productId: Int) {
         binding.fabCheckOut.setOnClickListener {
             val intent = Intent(this, CartActivity::class.java)
-            intent.putExtra(CartActivity.PRODUCT_ID, productId)
+            viewModel.loadProductCart(productId)
             startActivity(intent)
         }
 

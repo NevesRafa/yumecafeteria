@@ -23,7 +23,7 @@ class MenuAdapter(private val onProductClick: (Product) -> Unit) : RecyclerView.
 
     override fun getItemCount() = dataset.size
 
-    fun addCharacterList(list: List<Product>) {
+    fun addProductList(list: List<Product>) {
         dataset.addAll(list)
         notifyDataSetChanged()
     }

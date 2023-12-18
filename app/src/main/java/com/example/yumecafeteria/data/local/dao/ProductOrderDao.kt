@@ -21,5 +21,4 @@ interface ProductOrderDao {
 
     @Update
     fun update(order: ProductOrder)
-
 }

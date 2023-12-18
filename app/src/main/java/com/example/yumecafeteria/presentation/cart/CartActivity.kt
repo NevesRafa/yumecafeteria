@@ -5,16 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.yumecafeteria.data.model.Product
 import com.example.yumecafeteria.databinding.ActivityCartBinding
+import org.koin.android.ext.android.inject
 
 class CartActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCartBinding
-
+    private val viewModel: CartViewModel by inject()
     private lateinit var adapter: CartAdapter
-
-    companion object {
-        const val PRODUCT_ID = "extra.product.id"
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,15 +19,28 @@ class CartActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupProductOrderList()
+        setupViewModel()
 
-        intent.getParcelableExtra<Product>(PRODUCT_ID)?.let {
+        viewModel.getProductCartList()
+    }
 
+    private fun setupViewModel() {
+        viewModel.loadStateLiveData.observe(this) { state ->
+            when (state) {
+                is CartState.Loading -> {}
+                is CartState.Success -> showResponse(state.result)
+                is CartState.Error -> {}
+            }
         }
+    }
+
+    private fun showResponse(result: List<Product>) {
+        adapter.update(result)
     }
 
     private fun setupProductOrderList() {
         binding.recyclerviewCartProduct.layoutManager = LinearLayoutManager(this)
-        adapter = CartAdapter {}
+        adapter = CartAdapter(onProductClick = {})
         binding.recyclerviewCartProduct.adapter = adapter
     }
 }
