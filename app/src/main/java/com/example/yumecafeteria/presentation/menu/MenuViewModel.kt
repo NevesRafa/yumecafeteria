@@ -20,13 +20,19 @@ class MenuViewModel(private val repository: MenuRepository) : ViewModel() {
 
             try {
                 val characterList = withContext(Dispatchers.IO) {
-                    repository.loadProducts()
+                    repository.getAllProducts()
                 }
 
                 loadStateLiveData.postValue(MenuState.Success(characterList))
             } catch (error: Exception) {
                 loadStateLiveData.postValue(MenuState.Error(error.message))
             }
+        }
+    }
+
+    fun saveListProduct() {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.insertProducts()
         }
     }
 }

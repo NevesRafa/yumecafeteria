@@ -9,7 +9,5 @@ data class ProductOrder(
     val id: Int = 0,
     val productId: Int,
     val orderId: Int,
-    val hasSugar: Boolean,
     val quantity: Int,
-    val size: String
 )

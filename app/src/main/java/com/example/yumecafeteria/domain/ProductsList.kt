@@ -4,53 +4,53 @@ import com.example.yumecafeteria.data.model.Product
 
 val productList = listOf(
     Product(
-        productName = "Café Espresso",
-        description = "Um shot de café forte e encorpado.",
-        price = 3.99
+        productName = "Espresso",
+        description = "O Espresso é a essência pura do café. Preparado com grãos finamente moídos, a extração sob pressão revela um líquido encorpado e robusto, acompanhado por uma camada densa de crema. Uma experiência intensa para os verdadeiros apreciadores de café.",
+        price = 2.50
     ),
     Product(
         productName = "Cappuccino",
-        description = "Desfrute do prazer do café com o nosso Cappuccino Delicioso! Feito com café expresso encorpado, leite cremoso e uma pitada de espuma fofa, é a escolha perfeita para aquecer seu dia. Experimente a combinação única de sabores em cada gole. Venha nos visitar e descubra o cappuccino que vai tornar os seus momentos ainda mais especiais.",
-        price = 4.99
+        description = "O Cappuccino é uma obra-prima italiana que combina partes iguais de Espresso, leite vaporizado e espuma de leite. A suavidade do leite equilibra perfeitamente o sabor forte do café, resultando em uma bebida cremosa e reconfortante, ideal para momentos de relaxamento.",
+        price = 3.00
     ),
     Product(
         productName = "Latte",
-        description = "Café expresso com uma quantidade generosa de leite vaporizado.",
-        price = 4.49
-    ),
-    Product(
-        productName = "Bagel de Salmão",
-        description = "Bagel com cream cheese e salmão defumado, uma opção saborosa.",
-        price = 5.99
-    ),
-    Product(
-        productName = "Torta de Maçã",
-        description = "Uma fatia generosa de torta de maçã caseira, perfeita para sobremesa.",
-        price = 3.49
+        description = "O Latte é uma sinfonia de sabores, com um shot generoso de Espresso harmonizado com uma quantidade abundante de leite vaporizado. Uma fina camada de espuma adiciona uma textura suave, criando uma experiência indulgente para os amantes de café suave.",
+        price = 3.50
     ),
     Product(
         productName = "Macchiato",
-        description = "Café expresso com uma pequena quantidade de leite vaporizado.",
-        price = 3.79
+        description = "O Macchiato é uma celebração da simplicidade. Um Espresso puro, 'manchado' com uma pitada sutil de leite vaporizado. Esta bebida destaca as notas ricas do café, proporcionando uma experiência audaciosa e refinada.",
+        price = 2.75
     ),
     Product(
         productName = "Mocha",
-        description = "Café expresso, leite vaporizado, e xarope de chocolate.",
-        price = 4.99
+        description = "O Mocha é uma indulgência irresistível que une o Espresso vigoroso com o calor reconfortante do leite vaporizado, tudo enriquecido com o sabor envolvente do chocolate. Uma finalização indulgente com chantilly torna esta bebida uma verdadeira delícia para os amantes do doce.",
+        price = 4.00
     ),
     Product(
-        productName = "Chá de Camomila",
-        description = "Infusão suave de camomila, perfeita para relaxar.",
-        price = 3.29
+        productName = "Affogato",
+        description = "O Affogato é uma experiência de contrastes deliciosos. Uma bola de sorvete de alta qualidade 'afogada' em um shot fervente de Espresso. A mistura de temperaturas e texturas cria uma sobremesa ousada que encanta o paladar.",
+        price = 5.00
     ),
     Product(
-        productName = "Croissant",
-        description = "Um clássico croissant folhado, delicioso e fresco.",
-        price = 2.49
+        productName = "Americano",
+        description = "O Americano é a resposta suave ao Espresso intenso. Um Espresso diluído em água quente, resultando em uma bebida mais leve sem perder a riqueza do café. Ideal para aqueles que apreciam uma xícara mais suave e ampla.",
+        price = 2.25
     ),
     Product(
-        productName = "Smoothie de Frutas",
-        description = "Uma mistura refrescante de frutas em um smoothie delicioso.",
-        price = 4.29
+        productName = "Ristretto",
+        description = "O Ristretto é a expressão máxima da intensidade. Um Espresso curto e concentrado, preparado com menos água, para destacar os óleos essenciais dos grãos de café. Uma experiência breve, porém extraordinariamente encorpada.",
+        price = 2.75
+    ),
+    Product(
+        productName = "Café au Lait",
+        description = "O Café au Lait é a fusão perfeita entre café forte e leite vaporizado. Com uma mistura igual de ambos, essa bebida proporciona uma experiência suave e equilibrada, ideal para quem busca um café com uma nota mais suave.",
+        price = 3.25
+    ),
+    Product(
+        productName = "Flat White",
+        description = "O Flat White é a expressão australiana do requinte. Um Espresso duplo suavizado com leite vaporizado cuidadosamente texturizado, resultando em uma bebida aveludada com sabor intenso. Para aqueles que buscam a perfeição na simplicidade.",
+        price = 3.75
     )
 )

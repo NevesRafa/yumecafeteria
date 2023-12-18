@@ -14,7 +14,7 @@ interface ProductDao {
     fun getAll(): List<Product>
 
     @Insert
-    fun save(order: Product)
+    fun save(order: List<Product>)
 
     @Delete
     fun remove(order: Product)

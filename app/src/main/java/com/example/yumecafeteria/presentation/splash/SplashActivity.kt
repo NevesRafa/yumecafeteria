@@ -11,13 +11,14 @@ import com.example.yumecafeteria.presentation.menu.MenuActivity
 class SplashActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySplashBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         splashScreenDuration()
+
     }
 
     private fun splashScreenDuration() {

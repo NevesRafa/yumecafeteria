@@ -1,10 +1,12 @@
 package com.example.yumecafeteria.presentation.description
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.yumecafeteria.R
 import com.example.yumecafeteria.data.model.Product
 import com.example.yumecafeteria.databinding.ActivityDescriptionBinding
+import com.example.yumecafeteria.presentation.cart.CartActivity
 
 class DescriptionActivity : AppCompatActivity() {
 
@@ -21,6 +23,7 @@ class DescriptionActivity : AppCompatActivity() {
 
         intent.getParcelableExtra<Product>(EXTRA_PRODUCT_DESCRIPTION)?.let {
             loadDescription(it)
+
         }
     }
 
@@ -29,5 +32,16 @@ class DescriptionActivity : AppCompatActivity() {
         binding.productDescription.text = product.description
         binding.productDescriptionName.text = product.productName
         binding.productDescriptionPrice.text = "R$ ${product.price}"
+
+        addProductToCart(product.id)
+    }
+
+    private fun addProductToCart(productId: Int) {
+        binding.fabCheckOut.setOnClickListener {
+            val intent = Intent(this, CartActivity::class.java)
+            intent.putExtra(CartActivity.PRODUCT_ID, productId)
+            startActivity(intent)
+        }
+
     }
 }

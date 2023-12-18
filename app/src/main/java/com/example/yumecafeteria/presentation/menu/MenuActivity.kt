@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.yumecafeteria.data.model.Product
 import com.example.yumecafeteria.databinding.ActivityMenuBinding
+import com.example.yumecafeteria.presentation.cart.CartActivity
 import com.example.yumecafeteria.presentation.description.DescriptionActivity
 import org.koin.android.ext.android.inject
 
@@ -24,6 +25,7 @@ class MenuActivity : AppCompatActivity() {
 
         setupViewModel()
         setupList()
+        openMyCart()
 
         viewModel.loadProductsList()
     }
@@ -39,6 +41,9 @@ class MenuActivity : AppCompatActivity() {
     }
 
     private fun showResponse(result: List<Product>) {
+        if (result.isNullOrEmpty()) {
+            viewModel.saveListProduct()
+        }
         hideLoading()
         adapter.addCharacterList(result)
     }
@@ -64,6 +69,13 @@ class MenuActivity : AppCompatActivity() {
             layoutManager = GridLayoutManager(this@MenuActivity, 2, GridLayoutManager.VERTICAL, false)
             adapter = this@MenuActivity.adapter
 
+        }
+    }
+
+    private fun openMyCart() {
+        binding.btnCart.setOnClickListener {
+            val intent = Intent(this, CartActivity::class.java)
+            startActivity(intent)
         }
     }
 }

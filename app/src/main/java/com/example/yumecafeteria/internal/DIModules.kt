@@ -3,6 +3,7 @@ package com.example.yumecafeteria.internal
 import androidx.room.Room
 import com.example.yumecafeteria.data.local.database.AppDatabase
 import com.example.yumecafeteria.domain.MenuRepository
+import com.example.yumecafeteria.presentation.description.DescriptionViewModel
 import com.example.yumecafeteria.presentation.menu.MenuViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -27,9 +28,10 @@ val appModule = module {
     single { get<AppDatabase>().ordersDao() }
 
     // repository
-    factory { MenuRepository() }
+    factory { MenuRepository(get()) }
 
     // viewmodels
     viewModel { MenuViewModel(get()) }
+    viewModel { DescriptionViewModel() }
 
 }

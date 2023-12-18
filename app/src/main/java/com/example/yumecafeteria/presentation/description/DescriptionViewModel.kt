@@ -1,4 +1,6 @@
 package com.example.yumecafeteria.presentation.description
 
-class DescriptionViewModel {
+import androidx.lifecycle.ViewModel
+
+class DescriptionViewModel() : ViewModel() {
 }
