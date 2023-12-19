@@ -2,8 +2,6 @@ package com.example.yumecafeteria.data.local.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
-import com.example.yumecafeteria.data.local.Converters
 import com.example.yumecafeteria.data.local.dao.OrdersDao
 import com.example.yumecafeteria.data.local.dao.ProductDao
 import com.example.yumecafeteria.data.local.dao.ProductOrderDao
@@ -21,7 +19,6 @@ import com.example.yumecafeteria.data.model.ProductOrder
     exportSchema = true
 )
 
-@TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun productOrderDao(): ProductOrderDao
     abstract fun productDao(): ProductDao

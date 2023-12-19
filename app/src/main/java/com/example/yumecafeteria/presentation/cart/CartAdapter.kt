@@ -5,14 +5,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yumecafeteria.R
 import com.example.yumecafeteria.data.model.Product
+import com.example.yumecafeteria.data.model.ProductCart
 import com.example.yumecafeteria.databinding.ItemProductCartBinding
+import com.example.yumecafeteria.internal.extension.formatAsCurrency
 
 class CartAdapter(
     private val onProductClick: (Product) -> Unit,
-    private val onDeleteClick: (Product) -> Unit
+    private val onDeleteClick: (ProductCart) -> Unit
 ) : RecyclerView.Adapter<ProductCartListViewHolder>() {
 
-    private val dataset = mutableListOf<Product>()
+    private val dataset = mutableListOf<ProductCart>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductCartListViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -30,7 +32,7 @@ class CartAdapter(
 
     override fun getItemCount() = dataset.size
 
-    fun update(list: List<Product>) {
+    fun update(list: List<ProductCart>) {
         dataset.clear()
         dataset.addAll(list)
         notifyDataSetChanged()
@@ -42,19 +44,19 @@ class ProductCartListViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(
-        product: Product,
+        productCart: ProductCart,
         onProductClick: (Product) -> Unit,
-        onDeleteClick: (Product) -> Unit
+        onDeleteClick: (ProductCart) -> Unit
     ) {
 
-        var quantity = 1
+        var quantity = productCart.quantity
 
         binding.root.setOnClickListener {
-            onProductClick(product)
+            onProductClick(productCart.product)
         }
 
         binding.btnDelete.setOnClickListener {
-            onDeleteClick(product)
+            onDeleteClick(productCart)
         }
 
         binding.btnIcUp.setOnClickListener {
@@ -72,9 +74,9 @@ class ProductCartListViewHolder(
 
         }
 
-        binding.productCartName.text = product.productName
-        binding.productCartDescription.text = product.description
-        binding.productCartPrice.text = "R$ ${product.price}"
+        binding.productCartName.text = productCart.product.productName
+        binding.productCartDescription.text = productCart.product.description
+        binding.productCartPrice.text = productCart.product.price.formatAsCurrency()
         binding.image.setImageResource(R.drawable.cappucino)
         binding.quantity.text = quantity.toString()
     }

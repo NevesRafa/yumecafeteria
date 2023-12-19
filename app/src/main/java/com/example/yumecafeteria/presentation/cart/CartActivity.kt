@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.yumecafeteria.data.model.Product
+import com.example.yumecafeteria.data.model.ProductCart
 import com.example.yumecafeteria.databinding.ActivityCartBinding
 import com.example.yumecafeteria.presentation.description.DescriptionActivity
 import org.koin.android.ext.android.inject
@@ -24,6 +24,7 @@ class CartActivity : AppCompatActivity() {
         setupViewModel()
 
         viewModel.getProductCartList()
+        viewModel.updateQuantityTotal()
     }
 
     private fun setupViewModel() {
@@ -33,11 +34,12 @@ class CartActivity : AppCompatActivity() {
                 is CartState.Success -> showResponse(state.result)
                 is CartState.Error -> {}
                 is CartState.Remove -> removeProductFromList(state.product)
+                is CartState.UpdateTotalQuantity -> totalQuantity(state.total)
             }
         }
     }
 
-    private fun showResponse(result: List<Product>) {
+    private fun showResponse(result: List<ProductCart>) {
         adapter.update(result)
     }
 
@@ -56,8 +58,12 @@ class CartActivity : AppCompatActivity() {
         binding.recyclerviewCartProduct.adapter = adapter
     }
 
-    private fun removeProductFromList(product: Product) {
-        viewModel.removeProduct(product)
+    private fun removeProductFromList(productCart: ProductCart) {
+        viewModel.removeProduct(productCart)
+    }
+
+    private fun totalQuantity(total: Int) {
+        binding.quantityTotal.text = total.toString()
     }
 
 }

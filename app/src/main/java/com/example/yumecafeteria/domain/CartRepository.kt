@@ -1,29 +1,38 @@
 package com.example.yumecafeteria.domain
 
 import com.example.yumecafeteria.data.local.dao.ProductDao
-import com.example.yumecafeteria.data.model.Product
+import com.example.yumecafeteria.data.model.ProductCart
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class CartRepository(private val database: ProductDao) {
 
-    private val productCartList = mutableListOf<Product>()
+    private val productCartList = mutableListOf<ProductCart>()
 
-    fun getProductById(id: Int): List<Product> {
+    suspend fun addProductToCartById(id: Int) {
+        withContext(Dispatchers.IO) {
+            val product = database.searchId(id)
+            productCartList.add(ProductCart(product, 1))
+        }
+    }
 
-        val product = database.searchId(id)
-
-        productCartList.add(product)
-
+    fun getProductsInCart(): List<ProductCart> {
         return productCartList
     }
 
-    fun getProductCartList(): List<Product> {
-        return productCartList
-    }
-
-    fun removeProduct(product: Product) {
+    fun removeProductFromCart(product: ProductCart) {
         if (productCartList.contains(product)) {
             productCartList.remove(product)
         }
     }
 
+    fun sumQuantity(): Int {
+        val total = if (productCartList.isNotEmpty()) {
+            productCartList.sumBy { it.quantity }
+        } else {
+            0
+        }
+
+        return total
+    }
 }

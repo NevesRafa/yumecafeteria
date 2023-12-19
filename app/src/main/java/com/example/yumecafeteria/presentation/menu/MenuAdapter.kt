@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.yumecafeteria.R
 import com.example.yumecafeteria.data.model.Product
 import com.example.yumecafeteria.databinding.ItemProductBinding
+import com.example.yumecafeteria.internal.extension.formatAsCurrency
 
 class MenuAdapter(private val onProductClick: (Product) -> Unit) : RecyclerView.Adapter<ProductListViewHolder>() {
 
@@ -39,7 +40,7 @@ class ProductListViewHolder(private val binding: ItemProductBinding) : RecyclerV
 
         binding.productName.text = product.productName
         binding.productDescription.text = product.description
-        binding.productPrice.text = "R$ ${product.price}"
+        binding.productPrice.text = product.price.formatAsCurrency()
         binding.image.setImageResource(R.drawable.cappucino)
     }
 }

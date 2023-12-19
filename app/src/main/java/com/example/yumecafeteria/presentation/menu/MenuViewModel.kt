@@ -15,7 +15,7 @@ class MenuViewModel(
 
     val loadStateLiveData = MutableLiveData<MenuState>()
 
-    val cartList = cartRepository.getProductCartList()
+    val cartList = cartRepository.getProductsInCart()
 
     fun loadProductsList() {
         viewModelScope.launch {
