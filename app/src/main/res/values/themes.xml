@@ -1,7 +1,7 @@
 <resources>
 
     <style name="Base.Theme.YumeCafeteria" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="android:statusBarColor">#92CAAD</item>
+        <item name="android:statusBarColor">#2F4E63</item>
     </style>
 
     <style name="Theme.YumeCafeteria" parent="Base.Theme.YumeCafeteria" />

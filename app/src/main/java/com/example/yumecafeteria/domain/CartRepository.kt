@@ -5,7 +5,7 @@ import com.example.yumecafeteria.data.model.Product
 
 class CartRepository(private val database: ProductDao) {
 
-    val productCartList = mutableListOf<Product>()
+    private val productCartList = mutableListOf<Product>()
 
     fun getProductById(id: Int): List<Product> {
 
@@ -15,4 +15,15 @@ class CartRepository(private val database: ProductDao) {
 
         return productCartList
     }
+
+    fun getProductCartList(): List<Product> {
+        return productCartList
+    }
+
+    fun removeProduct(product: Product) {
+        if (productCartList.contains(product)) {
+            productCartList.remove(product)
+        }
+    }
+
 }

@@ -70,7 +70,7 @@
         tools:text="Desfrute do prazer do café com o nosso Cappuccino Delicioso! Feito com café expresso encorpado, leite cremoso e uma pitada de espuma fofa, é a escolha perfeita para aquecer seu dia. Experimente a combinação única de sabores em cada gole. Venha nos visitar e descubra o cappuccino que vai tornar os seus momentos ainda mais especiais." />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/fab_check_out"
+        android:id="@+id/fab_add_cart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -89,10 +89,10 @@
         android:fontFamily="@font/abeezee"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/fab_check_out"
-        app:layout_constraintEnd_toStartOf="@id/fab_check_out"
+        app:layout_constraintBottom_toBottomOf="@id/fab_add_cart"
+        app:layout_constraintEnd_toStartOf="@id/fab_add_cart"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/fab_check_out"
+        app:layout_constraintTop_toTopOf="@id/fab_add_cart"
         tools:text="R$ 5,99" />
 
 

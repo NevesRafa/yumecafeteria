@@ -1,10 +1,12 @@
 package com.example.yumecafeteria.presentation.cart
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.yumecafeteria.data.model.Product
 import com.example.yumecafeteria.databinding.ActivityCartBinding
+import com.example.yumecafeteria.presentation.description.DescriptionActivity
 import org.koin.android.ext.android.inject
 
 class CartActivity : AppCompatActivity() {
@@ -30,6 +32,7 @@ class CartActivity : AppCompatActivity() {
                 is CartState.Loading -> {}
                 is CartState.Success -> showResponse(state.result)
                 is CartState.Error -> {}
+                is CartState.Remove -> removeProductFromList(state.product)
             }
         }
     }
@@ -40,7 +43,21 @@ class CartActivity : AppCompatActivity() {
 
     private fun setupProductOrderList() {
         binding.recyclerviewCartProduct.layoutManager = LinearLayoutManager(this)
-        adapter = CartAdapter(onProductClick = {})
+        adapter = CartAdapter(
+            onProductClick = { product ->
+                val intent = Intent(this, DescriptionActivity::class.java)
+                intent.putExtra(DescriptionActivity.EXTRA_PRODUCT_DESCRIPTION, product)
+                startActivity(intent)
+            },
+            onDeleteClick = {
+                removeProductFromList(it)
+            }
+        )
         binding.recyclerviewCartProduct.adapter = adapter
     }
+
+    private fun removeProductFromList(product: Product) {
+        viewModel.removeProduct(product)
+    }
+
 }

@@ -26,7 +26,7 @@
             android:id="@+id/product_cart_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/abeezee"
             android:gravity="start"
@@ -38,24 +38,44 @@
             tools:text="Cappuccino" />
 
         <TextView
-            android:id="@+id/product_cart_description"
+            android:id="@+id/btn_delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/abeezee"
+            android:text="@string/title_button_delete"
+            android:textColor="#002AFB"
+            android:textSize="10sp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="@id/product_cart_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/product_cart_name" />
+
+        <TextView
+            android:id="@+id/product_cart_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
             android:ellipsize="end"
             android:fontFamily="@font/abeezee"
             android:maxLines="2"
             android:textSize="10sp"
             android:textStyle="italic"
-            app:layout_constraintStart_toStartOf="@id/product_cart_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/image"
             app:layout_constraintTop_toBottomOf="@id/product_cart_name"
-            tools:text="with chocolate" />
+            tools:text="O Macchiato é uma celebração da simplicidade. Um Espresso puro, 'manchado' com uma pitada sutil de leite vaporizado. Esta bebida destaca as notas ricas do café, proporcionando uma experiência audaciosa e refinada." />
 
         <TextView
             android:id="@+id/product_cart_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/abeezee"
+            android:textColor="#E55737"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -63,56 +83,52 @@
             app:layout_constraintTop_toBottomOf="@id/product_cart_description"
             tools:text="$5,10" />
 
+        <ImageView
+            android:id="@+id/btn_ic_down"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginEnd="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_quantity_down"
+            app:layout_constraintBottom_toBottomOf="@id/quantity"
+            app:layout_constraintEnd_toStartOf="@id/quantity"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/product_cart_price"
+            app:layout_constraintTop_toTopOf="@id/quantity" />
+
         <TextView
-            android:id="@+id/title_cart_quantity"
+            android:id="@+id/quantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:fontFamily="@font/abeezee"
-            android:text="Quantidade"
-            app:layout_constraintBottom_toTopOf="@id/quantity_text_input"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/product_cart_name" />
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_ic_up"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/btn_ic_down"
+            app:layout_constraintTop_toBottomOf="@id/product_cart_description" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:src="@drawable/ic_down"
-            app:layout_constraintBottom_toBottomOf="@id/quantity_text_input"
-            app:layout_constraintEnd_toStartOf="@id/quantity_text_input"
-            app:layout_constraintTop_toTopOf="@id/quantity_text_input" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/quantity_text_input"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            app:layout_constraintEnd_toEndOf="@id/title_cart_quantity"
-            app:layout_constraintStart_toStartOf="@id/title_cart_quantity"
-            app:layout_constraintTop_toBottomOf="@id/title_cart_quantity">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/quantity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="number" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/btn_ic_up"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="16dp"
             android:clickable="true"
             android:focusable="true"
-            android:src="@drawable/ic_down"
-            app:layout_constraintBottom_toBottomOf="@id/quantity_text_input"
-            app:layout_constraintStart_toEndOf="@id/quantity_text_input"
-            app:layout_constraintTop_toTopOf="@id/quantity_text_input" />
+            android:src="@drawable/ic_quantity_up"
+            app:layout_constraintBottom_toBottomOf="@id/quantity"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/quantity"
+            app:layout_constraintTop_toTopOf="@id/quantity"
+
+            />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

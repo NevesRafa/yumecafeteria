@@ -14,13 +14,13 @@ interface ProductDao {
     fun getAll(): List<Product>
 
     @Insert
-    fun save(order: List<Product>)
+    fun save(productList: List<Product>)
 
     @Delete
-    fun remove(order: Product)
+    fun remove(product: Product)
 
     @Update
-    fun update(order: Product)
+    fun update(product: Product)
 
     @Query("SELECT * FROM product WHERE id = :id")
     fun searchId(id: Int): Product

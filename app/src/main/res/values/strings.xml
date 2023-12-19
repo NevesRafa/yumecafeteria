@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Yume Cafeteria</string>
+    <string name="title_button_delete">Excluir</string>
 </resources>

@@ -6,23 +6,20 @@ import androidx.lifecycle.viewModelScope
 import com.example.yumecafeteria.domain.CartRepository
 import com.example.yumecafeteria.domain.MenuRepository
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class MenuViewModel(
-    private val repository: MenuRepository,
-    private val cartRepository: CartRepository
+    private val repository: MenuRepository, private val cartRepository: CartRepository
 ) : ViewModel() {
 
     val loadStateLiveData = MutableLiveData<MenuState>()
 
-    val cartList = cartRepository.productCartList
+    val cartList = cartRepository.getProductCartList()
 
     fun loadProductsList() {
         viewModelScope.launch {
             loadStateLiveData.postValue(MenuState.Loading)
-            delay(3000)
 
             try {
                 val characterList = withContext(Dispatchers.IO) {
@@ -37,7 +34,7 @@ class MenuViewModel(
     }
 
     fun saveListProduct() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             repository.insertProducts()
         }
     }

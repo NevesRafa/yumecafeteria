@@ -1,12 +1,11 @@
 package com.example.yumecafeteria.presentation.description
 
-import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.yumecafeteria.R
 import com.example.yumecafeteria.data.model.Product
 import com.example.yumecafeteria.databinding.ActivityDescriptionBinding
-import com.example.yumecafeteria.presentation.cart.CartActivity
 import org.koin.android.ext.android.inject
 
 class DescriptionActivity : AppCompatActivity() {
@@ -40,10 +39,9 @@ class DescriptionActivity : AppCompatActivity() {
     }
 
     private fun addProductToCart(productId: Int) {
-        binding.fabCheckOut.setOnClickListener {
-            val intent = Intent(this, CartActivity::class.java)
+        binding.fabAddCart.setOnClickListener {
             viewModel.loadProductCart(productId)
-            startActivity(intent)
+            Toast.makeText(this, "Produto adicionado ao carrinho com sucesso!!!", Toast.LENGTH_SHORT).show()
         }
 
     }
