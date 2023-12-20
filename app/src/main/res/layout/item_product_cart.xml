@@ -37,13 +37,11 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Cappuccino" />
 
-        <TextView
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_delete"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:clickable="true"
-            android:focusable="true"
             android:fontFamily="@font/abeezee"
             android:text="@string/title_button_delete"
             android:textColor="#002AFB"
@@ -52,6 +50,7 @@
             app:layout_constraintBottom_toBottomOf="@id/product_cart_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/product_cart_name" />
+
 
         <TextView
             android:id="@+id/product_cart_description"
@@ -83,13 +82,12 @@
             app:layout_constraintTop_toBottomOf="@id/product_cart_description"
             tools:text="$5,10" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/btn_ic_down"
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:layout_marginEnd="8dp"
-            android:clickable="true"
-            android:focusable="true"
+            android:background="?android:attr/selectableItemBackground"
             android:src="@drawable/ic_quantity_down"
             app:layout_constraintBottom_toBottomOf="@id/quantity"
             app:layout_constraintEnd_toStartOf="@id/quantity"
@@ -113,23 +111,19 @@
             app:layout_constraintStart_toEndOf="@id/btn_ic_down"
             app:layout_constraintTop_toBottomOf="@id/product_cart_description" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/btn_ic_up"
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="16dp"
-            android:clickable="true"
-            android:focusable="true"
+            android:background="?android:attr/selectableItemBackground"
             android:src="@drawable/ic_quantity_up"
             app:layout_constraintBottom_toBottomOf="@id/quantity"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@id/quantity"
-            app:layout_constraintTop_toTopOf="@id/quantity"
-
-            />
-
+            app:layout_constraintTop_toTopOf="@id/quantity" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
