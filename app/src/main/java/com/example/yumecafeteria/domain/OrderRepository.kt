@@ -1,11 +1,12 @@
 package com.example.yumecafeteria.domain
 
 import com.example.yumecafeteria.data.local.dao.ProductDao
+import com.example.yumecafeteria.data.model.Product
 import com.example.yumecafeteria.data.model.ProductCart
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class CartRepository(private val database: ProductDao) {
+class OrderRepository(private val database: ProductDao) {
 
     private val productCartList = mutableListOf<ProductCart>()
 
@@ -26,7 +27,7 @@ class CartRepository(private val database: ProductDao) {
         }
     }
 
-    fun sumQuantity(): Int {
+    fun sumTotalQuantity(): Int {
 
         var quantity = 0
 
@@ -37,7 +38,7 @@ class CartRepository(private val database: ProductDao) {
         return quantity
     }
 
-    fun sumPrice(): Double {
+    fun sumTotalPrice(): Double {
 
         var total = 0.0
 
@@ -46,5 +47,17 @@ class CartRepository(private val database: ProductDao) {
         }
 
         return total
+    }
+
+    suspend fun insertProducts() {
+        withContext(Dispatchers.IO) {
+            database.save(productList)
+        }
+    }
+
+    suspend fun getAllProducts(): List<Product> {
+        return withContext(Dispatchers.IO) {
+            database.getAll()
+        }
     }
 }

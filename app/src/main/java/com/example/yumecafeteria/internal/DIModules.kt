@@ -2,10 +2,10 @@ package com.example.yumecafeteria.internal
 
 import androidx.room.Room
 import com.example.yumecafeteria.data.local.database.AppDatabase
-import com.example.yumecafeteria.domain.CartRepository
-import com.example.yumecafeteria.domain.MenuRepository
+import com.example.yumecafeteria.domain.OrderRepository
 import com.example.yumecafeteria.presentation.cart.CartViewModel
 import com.example.yumecafeteria.presentation.description.DescriptionViewModel
+import com.example.yumecafeteria.presentation.home.HomeViewModel
 import com.example.yumecafeteria.presentation.menu.MenuViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -30,11 +30,11 @@ val appModule = module {
     single { get<AppDatabase>().ordersDao() }
 
     // repository
-    single { MenuRepository(get()) }
-    single { CartRepository(get()) }
+    single { OrderRepository(get()) }
 
     // viewmodels
-    viewModel { MenuViewModel(get(), get()) }
+    viewModel { HomeViewModel(get()) }
+    viewModel { MenuViewModel(get()) }
     viewModel { DescriptionViewModel(get()) }
     viewModel { CartViewModel(get()) }
 

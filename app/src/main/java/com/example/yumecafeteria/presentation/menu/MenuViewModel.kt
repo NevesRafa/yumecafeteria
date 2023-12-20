@@ -3,19 +3,14 @@ package com.example.yumecafeteria.presentation.menu
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.yumecafeteria.domain.CartRepository
-import com.example.yumecafeteria.domain.MenuRepository
+import com.example.yumecafeteria.domain.OrderRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class MenuViewModel(
-    private val repository: MenuRepository, private val cartRepository: CartRepository
-) : ViewModel() {
+class MenuViewModel(private val repository: OrderRepository) : ViewModel() {
 
     val loadStateLiveData = MutableLiveData<MenuState>()
-
-    val cartList = cartRepository.getProductsInCart()
 
     fun loadProductsList() {
         viewModelScope.launch {
@@ -30,12 +25,6 @@ class MenuViewModel(
             } catch (error: Exception) {
                 loadStateLiveData.postValue(MenuState.Error(error.message))
             }
-        }
-    }
-
-    fun saveListProduct() {
-        viewModelScope.launch {
-            repository.insertProducts()
         }
     }
 }

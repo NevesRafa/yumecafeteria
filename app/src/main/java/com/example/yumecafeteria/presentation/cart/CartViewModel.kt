@@ -4,19 +4,19 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.yumecafeteria.data.model.ProductCart
-import com.example.yumecafeteria.domain.CartRepository
+import com.example.yumecafeteria.domain.OrderRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class CartViewModel(private val repository: CartRepository) : ViewModel() {
+class CartViewModel(private val repository: OrderRepository) : ViewModel() {
 
     val loadStateLiveData = MutableLiveData<CartState>()
 
     fun getProductCartList() {
         viewModelScope.launch(Dispatchers.IO) {
             val cartProductList = repository.getProductsInCart()
-            val totalQuantity = repository.sumQuantity()
-            val totalPrice = repository.sumPrice()
+            val totalQuantity = repository.sumTotalQuantity()
+            val totalPrice = repository.sumTotalPrice()
             loadStateLiveData.postValue(CartState.Success(cartProductList, totalQuantity, totalPrice))
         }
     }
