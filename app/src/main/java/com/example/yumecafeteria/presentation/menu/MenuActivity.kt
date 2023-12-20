@@ -32,7 +32,7 @@ class MenuActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        //cartUpdate()
+        setCartQuantity()
     }
 
     private fun setupViewModel() {
@@ -81,14 +81,14 @@ class MenuActivity : AppCompatActivity() {
         }
     }
 
-//    private fun cartUpdate() {
-//        val cartList = viewModel.cartList
-//
-//        if (cartList.isNotEmpty()) {
-//            binding.badgeGroup.visibility = View.VISIBLE
-//            binding.badgeText.text = cartList.size.toString()
-//        } else {
-//            binding.badgeGroup.visibility = View.GONE
-//        }
-//    }
+    private fun setCartQuantity() {
+        val totalQuantity = viewModel.getCartTotalQuantity()
+
+        if (totalQuantity > 0) {
+            binding.badgeGroup.visibility = View.VISIBLE
+            binding.badgeText.text = totalQuantity.toString()
+        } else {
+            binding.badgeGroup.visibility = View.GONE
+        }
+    }
 }

@@ -3,11 +3,13 @@ package com.example.yumecafeteria.presentation.cart
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.yumecafeteria.data.model.ProductCart
 import com.example.yumecafeteria.databinding.ActivityCartBinding
 import com.example.yumecafeteria.internal.extension.formatAsCurrency
+import com.example.yumecafeteria.internal.extension.formatAsCustomUnit
 import com.example.yumecafeteria.presentation.description.DescriptionActivity
 import org.koin.android.ext.android.inject
 
@@ -24,6 +26,7 @@ class CartActivity : AppCompatActivity() {
 
         setupProductOrderList()
         setupViewModel()
+        createOrder()
 
         viewModel.getProductCartList()
     }
@@ -64,6 +67,12 @@ class CartActivity : AppCompatActivity() {
             },
             onDeleteClick = {
                 removeProductFromList(it)
+            },
+            onUpClick = {
+                it.quantity++
+            },
+            onDownClick = {
+                it.quantity--
             }
         )
         binding.recyclerviewCartProduct.adapter = adapter
@@ -74,11 +83,20 @@ class CartActivity : AppCompatActivity() {
     }
 
     private fun setTotalQuantity(quantity: Int) {
-        binding.quantityTotal.text = "${quantity} Und."
+        binding.quantityTotal.text = quantity.formatAsCustomUnit("Unid")
     }
 
     private fun setTotalPrice(total: Double) {
         binding.total.text = total.formatAsCurrency()
+    }
+
+    private fun createOrder() {
+
+
+        binding.fabFinalizePurchase.setOnClickListener {
+            viewModel.createOrder()
+            Toast.makeText(this, "Compra concluida com sucesso!!!", Toast.LENGTH_SHORT).show()
+        }
     }
 
 

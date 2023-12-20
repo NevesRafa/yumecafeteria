@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 data class ProductOrder(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-    val productId: Int,
-    val orderId: Int,
+    val productId: Long,
+    val orderId: Long,
     val quantity: Int,
 )

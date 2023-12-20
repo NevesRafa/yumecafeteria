@@ -27,4 +27,15 @@ class MenuViewModel(private val repository: OrderRepository) : ViewModel() {
             }
         }
     }
+
+    fun getCartTotalQuantity(): Int {
+
+        var totalQuantity = 0
+
+        viewModelScope.launch {
+            totalQuantity = repository.sumTotalQuantity()
+        }
+
+        return totalQuantity
+    }
 }

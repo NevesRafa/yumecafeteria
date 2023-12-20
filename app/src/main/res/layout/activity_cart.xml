@@ -90,7 +90,7 @@
         android:fontFamily="@font/abeezee"
         android:text="@string/total"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/fab_add_cart"
+        app:layout_constraintBottom_toTopOf="@id/fab_finalize_purchase"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -104,7 +104,7 @@
         tools:text="R$ 25.00" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/fab_add_cart"
+        android:id="@+id/fab_finalize_purchase"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"

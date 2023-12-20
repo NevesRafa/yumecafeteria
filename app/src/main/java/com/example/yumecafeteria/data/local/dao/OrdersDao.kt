@@ -11,14 +11,14 @@ import com.example.yumecafeteria.data.model.Orders
 interface OrdersDao {
 
     @Query("SELECT * FROM orders")
-    fun getAll(): List<Orders>
+    suspend fun getAll(): List<Orders>
 
     @Insert
-    fun save(order: Orders)
+    suspend fun save(order: Orders): Long
 
     @Delete
-    fun remove(order: Orders)
+    suspend fun remove(order: Orders)
 
     @Update
-    fun update(order: Orders)
+    suspend fun update(order: Orders)
 }

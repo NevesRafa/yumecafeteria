@@ -1,18 +1,26 @@
 package com.example.yumecafeteria.domain
 
+import com.example.yumecafeteria.data.local.dao.OrdersDao
 import com.example.yumecafeteria.data.local.dao.ProductDao
+import com.example.yumecafeteria.data.local.dao.ProductOrderDao
+import com.example.yumecafeteria.data.model.Orders
 import com.example.yumecafeteria.data.model.Product
 import com.example.yumecafeteria.data.model.ProductCart
+import com.example.yumecafeteria.data.model.ProductOrderMapper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class OrderRepository(private val database: ProductDao) {
+class OrderRepository(
+    private val productDao: ProductDao,
+    private val ordersDao: OrdersDao,
+    private val productOrderDao: ProductOrderDao
+) {
 
     private val productCartList = mutableListOf<ProductCart>()
 
-    suspend fun addProductToCartById(id: Int) {
+    suspend fun addProductToCartById(id: Long) {
         withContext(Dispatchers.IO) {
-            val product = database.searchId(id)
+            val product = productDao.searchId(id)
             productCartList.add(ProductCart(product, 1))
         }
     }
@@ -51,13 +59,24 @@ class OrderRepository(private val database: ProductDao) {
 
     suspend fun insertProducts() {
         withContext(Dispatchers.IO) {
-            database.save(productList)
+            productDao.save(productList)
         }
     }
 
     suspend fun getAllProducts(): List<Product> {
         return withContext(Dispatchers.IO) {
-            database.getAll()
+            productDao.getAll()
+        }
+    }
+
+    suspend fun createOrder() {
+        withContext(Dispatchers.IO) {
+            val orderId = ordersDao.save(Orders())
+            productCartList.forEach {
+
+                productOrderDao.save(ProductOrderMapper.map(it, orderId))
+            }
+
         }
     }
 }

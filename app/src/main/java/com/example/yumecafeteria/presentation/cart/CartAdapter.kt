@@ -11,7 +11,9 @@ import com.example.yumecafeteria.internal.extension.formatAsCurrency
 
 class CartAdapter(
     private val onProductClick: (Product) -> Unit,
-    private val onDeleteClick: (ProductCart) -> Unit
+    private val onDeleteClick: (ProductCart) -> Unit,
+    private val onUpClick: (ProductCart) -> Unit,
+    private val onDownClick: (ProductCart) -> Unit,
 ) : RecyclerView.Adapter<ProductCartListViewHolder>() {
 
     private val dataset = mutableListOf<ProductCart>()
@@ -26,7 +28,9 @@ class CartAdapter(
         holder.bind(
             dataset[position],
             onProductClick,
-            onDeleteClick
+            onDeleteClick,
+            onUpClick,
+            onDownClick
         )
     }
 
@@ -46,10 +50,10 @@ class ProductCartListViewHolder(
     fun bind(
         productCart: ProductCart,
         onProductClick: (Product) -> Unit,
-        onDeleteClick: (ProductCart) -> Unit
+        onDeleteClick: (ProductCart) -> Unit,
+        onUpClick: (ProductCart) -> Unit,
+        onDownClick: (ProductCart) -> Unit
     ) {
-
-        var quantity = productCart.quantity
 
         binding.productCartDescription.setOnClickListener {
             onProductClick(productCart.product)
@@ -60,14 +64,14 @@ class ProductCartListViewHolder(
         }
 
         binding.btnIcUp.setOnClickListener {
-            quantity++
-            binding.quantity.text = quantity.toString()
+            onUpClick(productCart)
+            binding.quantity.text = productCart.quantity.toString()
         }
 
         binding.btnIcDown.setOnClickListener {
-            if (quantity != 1) {
-                quantity--
-                binding.quantity.text = quantity.toString()
+            if (productCart.quantity != 1) {
+                onDownClick(productCart)
+                binding.quantity.text = productCart.quantity.toString()
             } else {
                 return@setOnClickListener
             }
@@ -78,6 +82,6 @@ class ProductCartListViewHolder(
         binding.productCartDescription.text = productCart.product.description
         binding.productCartPrice.text = productCart.product.price.formatAsCurrency()
         binding.image.setImageResource(R.drawable.cappucino)
-        binding.quantity.text = quantity.toString()
+        binding.quantity.text = productCart.quantity.toString()
     }
 }

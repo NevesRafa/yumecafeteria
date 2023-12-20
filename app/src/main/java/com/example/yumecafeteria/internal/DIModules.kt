@@ -30,7 +30,7 @@ val appModule = module {
     single { get<AppDatabase>().ordersDao() }
 
     // repository
-    single { OrderRepository(get()) }
+    single { OrderRepository(get(), get(), get()) }
 
     // viewmodels
     viewModel { HomeViewModel(get()) }

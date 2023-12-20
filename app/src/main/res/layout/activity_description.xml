@@ -90,10 +90,10 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="#E55737"
-        app:layout_constraintBottom_toBottomOf="@id/fab_add_cart"
-        app:layout_constraintEnd_toStartOf="@id/fab_add_cart"
+        app:layout_constraintBottom_toBottomOf="@id/fab_finalize_purchase"
+        app:layout_constraintEnd_toStartOf="@id/fab_finalize_purchase"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/fab_add_cart"
+        app:layout_constraintTop_toTopOf="@id/fab_finalize_purchase"
         tools:text="R$ 5,99" />
 
 

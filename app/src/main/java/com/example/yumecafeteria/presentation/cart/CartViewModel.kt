@@ -27,4 +27,10 @@ class CartViewModel(private val repository: OrderRepository) : ViewModel() {
             getProductCartList()
         }
     }
+
+    fun createOrder() {
+        viewModelScope.launch {
+            repository.createOrder()
+        }
+    }
 }

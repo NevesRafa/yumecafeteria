@@ -8,7 +8,7 @@ import kotlinx.coroutines.launch
 
 class DescriptionViewModel(private val repository: OrderRepository) : ViewModel() {
 
-    fun addProductCart(id: Int) {
+    fun addProductCart(id: Long) {
 
         viewModelScope.launch(Dispatchers.IO) {
 

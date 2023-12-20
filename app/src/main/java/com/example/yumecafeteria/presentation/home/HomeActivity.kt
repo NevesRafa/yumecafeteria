@@ -21,7 +21,8 @@ class HomeActivity : AppCompatActivity() {
 
         openMenu()
         openMyOrders()
-        ensureProductList()
+
+        viewModel.getProductList()
     }
 
     private fun openMenu() {
@@ -35,13 +36,6 @@ class HomeActivity : AppCompatActivity() {
         binding.btnOrders.setOnClickListener {
             val intent = Intent(this, MyOrdersActivity::class.java)
             startActivity(intent)
-        }
-    }
-
-    private fun ensureProductList() {
-        val productList = viewModel.getProductList()
-        if (productList.isEmpty()) {
-            viewModel.saveMockListProduct()
         }
     }
 }

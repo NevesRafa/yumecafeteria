@@ -39,7 +39,7 @@ class DescriptionActivity : AppCompatActivity() {
         addProductToCart(product.id)
     }
 
-    private fun addProductToCart(productId: Int) {
+    private fun addProductToCart(productId: Long) {
         binding.fabAddCart.setOnClickListener {
             viewModel.addProductCart(productId)
             Toast.makeText(this, "Produto adicionado ao carrinho com sucesso!!!", Toast.LENGTH_SHORT).show()

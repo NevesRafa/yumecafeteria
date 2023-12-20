@@ -23,6 +23,6 @@ interface ProductDao {
     fun update(product: Product)
 
     @Query("SELECT * FROM product WHERE id = :id")
-    fun searchId(id: Int): Product
+    fun searchId(id: Long): Product
 
 }
