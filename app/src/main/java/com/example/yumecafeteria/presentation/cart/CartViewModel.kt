@@ -12,12 +12,12 @@ class CartViewModel(private val repository: CartRepository) : ViewModel() {
 
     val loadStateLiveData = MutableLiveData<CartState>()
 
-    private val cartProductList = repository.getProductsInCart()
-
     fun getProductCartList() {
-        viewModelScope.launch {
-            loadStateLiveData.postValue(CartState.Success(cartProductList))
-
+        viewModelScope.launch(Dispatchers.IO) {
+            val cartProductList = repository.getProductsInCart()
+            val totalQuantity = repository.sumQuantity()
+            val totalPrice = repository.sumPrice()
+            loadStateLiveData.postValue(CartState.Success(cartProductList, totalQuantity, totalPrice))
         }
     }
 
@@ -25,24 +25,6 @@ class CartViewModel(private val repository: CartRepository) : ViewModel() {
         viewModelScope.launch {
             repository.removeProductFromCart(product)
             getProductCartList()
-
         }
     }
-
-    fun updateQuantityTotal() {
-        viewModelScope.launch(Dispatchers.IO) {
-            val quantity = repository.sumQuantity()
-            loadStateLiveData.postValue(CartState.UpdateTotalQuantity(quantity))
-            getProductCartList()
-        }
-    }
-
-    fun updateTotal() {
-        viewModelScope.launch(Dispatchers.IO) {
-            val total = repository.sumPrice()
-            loadStateLiveData.postValue(CartState.TotalPrice(total))
-            getProductCartList()
-        }
-    }
-
 }

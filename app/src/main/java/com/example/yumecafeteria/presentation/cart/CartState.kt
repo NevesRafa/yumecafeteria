@@ -7,13 +7,7 @@ sealed class CartState {
 
     data object Loading : CartState()
 
-    data class Remove(val product: ProductCart) : CartState()
-
-    data class UpdateTotalQuantity(val total: Int) : CartState()
-
-    data class TotalPrice(val total: Double) : CartState()
-
-    data class Success(val result: List<ProductCart>) : CartState()
+    data class Success(val cartProductList: List<ProductCart>, val totalQuantity: Int, val totalPrice: Double) : CartState()
 
     data class Error(val errorMessage: String?) : CartState()
 

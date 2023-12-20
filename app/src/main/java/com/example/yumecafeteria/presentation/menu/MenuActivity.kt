@@ -46,9 +46,6 @@ class MenuActivity : AppCompatActivity() {
     }
 
     private fun showResponse(result: List<Product>) {
-        if (result.isNullOrEmpty()) {
-            viewModel.saveListProduct()
-        }
         hideLoading()
         adapter.addProductList(result)
     }

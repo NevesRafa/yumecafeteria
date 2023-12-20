@@ -22,11 +22,11 @@ class MenuViewModel(
             loadStateLiveData.postValue(MenuState.Loading)
 
             try {
-                val characterList = withContext(Dispatchers.IO) {
+                val productList = withContext(Dispatchers.IO) {
                     repository.getAllProducts()
                 }
 
-                loadStateLiveData.postValue(MenuState.Success(characterList))
+                loadStateLiveData.postValue(MenuState.Success(productList))
             } catch (error: Exception) {
                 loadStateLiveData.postValue(MenuState.Error(error.message))
             }

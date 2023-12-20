@@ -26,19 +26,19 @@ class CartActivity : AppCompatActivity() {
         setupViewModel()
 
         viewModel.getProductCartList()
-        viewModel.updateQuantityTotal()
-        viewModel.updateTotal()
     }
 
     private fun setupViewModel() {
         viewModel.loadStateLiveData.observe(this) { state ->
             when (state) {
                 is CartState.Loading -> {}
-                is CartState.Success -> showResponse(state.result)
+                is CartState.Success -> {
+                    showResponse(state.cartProductList)
+                    setTotalQuantity(state.totalQuantity)
+                    setTotalPrice(state.totalPrice)
+                }
+
                 is CartState.Error -> {}
-                is CartState.Remove -> removeProductFromList(state.product)
-                is CartState.UpdateTotalQuantity -> totalQuantity(state.total)
-                is CartState.TotalPrice -> totalPrice(state.total)
             }
         }
     }
@@ -73,11 +73,11 @@ class CartActivity : AppCompatActivity() {
         viewModel.removeProduct(productCart)
     }
 
-    private fun totalQuantity(quantity: Int) {
+    private fun setTotalQuantity(quantity: Int) {
         binding.quantityTotal.text = "${quantity} Und."
     }
 
-    private fun totalPrice(total: Double) {
+    private fun setTotalPrice(total: Double) {
         binding.total.text = total.formatAsCurrency()
     }
 
