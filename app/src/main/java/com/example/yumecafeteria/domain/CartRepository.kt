@@ -27,12 +27,20 @@ class CartRepository(private val database: ProductDao) {
     }
 
     fun sumQuantity(): Int {
-        val total = if (productCartList.isNotEmpty()) {
+        val quantity = if (productCartList.isNotEmpty()) {
             productCartList.sumBy { it.quantity }
         } else {
             0
         }
+        return quantity
+    }
 
+    fun sumPrice(): Double {
+        val total = if (productCartList.isNotEmpty()) {
+            productCartList.sumByDouble { it.product.price }
+        } else {
+            0.0
+        }
         return total
     }
 }

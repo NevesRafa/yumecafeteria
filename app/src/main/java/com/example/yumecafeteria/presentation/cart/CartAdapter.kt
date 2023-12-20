@@ -51,7 +51,7 @@ class ProductCartListViewHolder(
 
         var quantity = productCart.quantity
 
-        binding.root.setOnClickListener {
+        binding.productCartDescription.setOnClickListener {
             onProductClick(productCart.product)
         }
 

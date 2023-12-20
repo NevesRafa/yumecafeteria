@@ -6,7 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.example.yumecafeteria.databinding.ActivitySplashBinding
-import com.example.yumecafeteria.presentation.menu.MenuActivity
+import com.example.yumecafeteria.presentation.home.HomeActivity
 
 class SplashActivity : AppCompatActivity() {
 
@@ -24,7 +24,7 @@ class SplashActivity : AppCompatActivity() {
     private fun splashScreenDuration() {
         val splashScreenDuration = 4500L
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this@SplashActivity, MenuActivity::class.java)
+            val intent = Intent(this@SplashActivity, HomeActivity::class.java)
             startActivity(intent)
             finish()
         }, splashScreenDuration)

@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Yume Cafeteria</string>
     <string name="title_button_delete">Excluir</string>
+    <string name="title_menu">Menu</string>
+    <string name="my_orders">Meus Pedidos</string>
+    <string name="title_my_cart">Meu carrinho</string>
+    <string name="total_amount">Quantidade total</string>
+    <string name="total">Total</string>
+    <string name="finalize_purchase">Finalizar Compra</string>
+    <string name="empty_cart_message">Café e felicidade no mesmo carrinho.\n Que tal começar a sua jornada? ☕🛒</string>
 </resources>

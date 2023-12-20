@@ -89,6 +89,7 @@
         android:fontFamily="@font/abeezee"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:textColor="#E55737"
         app:layout_constraintBottom_toBottomOf="@id/fab_add_cart"
         app:layout_constraintEnd_toStartOf="@id/fab_add_cart"
         app:layout_constraintStart_toStartOf="parent"

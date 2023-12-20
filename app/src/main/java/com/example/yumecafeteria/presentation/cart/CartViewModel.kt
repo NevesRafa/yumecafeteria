@@ -31,8 +31,16 @@ class CartViewModel(private val repository: CartRepository) : ViewModel() {
 
     fun updateQuantityTotal() {
         viewModelScope.launch(Dispatchers.IO) {
-            val total = repository.sumQuantity()
-            loadStateLiveData.postValue(CartState.UpdateTotalQuantity(total))
+            val quantity = repository.sumQuantity()
+            loadStateLiveData.postValue(CartState.UpdateTotalQuantity(quantity))
+            getProductCartList()
+        }
+    }
+
+    fun updateTotal() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val total = repository.sumPrice()
+            loadStateLiveData.postValue(CartState.TotalPrice(total))
             getProductCartList()
         }
     }

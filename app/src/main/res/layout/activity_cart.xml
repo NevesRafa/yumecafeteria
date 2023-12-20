@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:fontFamily="@font/abeezee"
-        android:text="Meu carrinho"
+        android:text="@string/title_my_cart"
         android:textColor="@color/white"
         android:textSize="32sp"
         android:textStyle="bold"
@@ -34,6 +34,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="8dp"
+        android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toTopOf="@id/title_quantity_total"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,32 +42,33 @@
         app:layout_constraintTop_toBottomOf="@id/top_shape"
         tools:listitem="@layout/item_product_cart" />
 
-    <!--    <TextView-->
-    <!--        android:layout_width="0dp"-->
-    <!--        android:layout_height="0dp"-->
-    <!--        android:gravity="center"-->
-    <!--        android:text="Carrinho vazio."-->
-    <!--        app:layout_constraintBottom_toTopOf="@id/title_quantity_total"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintHorizontal_bias="0.0"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-
-    <!--        app:layout_constraintTop_toBottomOf="@id/top_shape"-->
-    <!--        app:layout_constraintVertical_bias="0.0" />-->
+    <TextView
+        android:id="@+id/empty_cart_message"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fontFamily="@font/abeezee"
+        android:gravity="center"
+        android:text="@string/empty_cart_message"
+        app:layout_constraintBottom_toTopOf="@id/title_quantity_total"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/top_shape"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/title_quantity_total"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:fontFamily="@font/abeezee"
-        android:text="Quantidade total"
+        android:text="@string/total_amount"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/title_price_total"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/recyclerview_cart_product"
-        app:layout_constraintVertical_chainStyle="spread" />
+
+        />
 
     <TextView
         android:id="@+id/quantity_total"
@@ -83,13 +85,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+
+        android:layout_marginBottom="16dp"
         android:fontFamily="@font/abeezee"
-        android:text="Total"
+        android:text="@string/total"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/fab_add_cart"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title_quantity_total" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/total"
@@ -109,12 +111,11 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
-        android:text="Finalizar Compra"
+        android:text="@string/finalize_purchase"
         android:textAlignment="textStart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title_price_total" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

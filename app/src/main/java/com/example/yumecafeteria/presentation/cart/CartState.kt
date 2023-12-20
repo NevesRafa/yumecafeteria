@@ -11,6 +11,8 @@ sealed class CartState {
 
     data class UpdateTotalQuantity(val total: Int) : CartState()
 
+    data class TotalPrice(val total: Double) : CartState()
+
     data class Success(val result: List<ProductCart>) : CartState()
 
     data class Error(val errorMessage: String?) : CartState()

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.yumecafeteria.R
 import com.example.yumecafeteria.data.model.Product
 import com.example.yumecafeteria.databinding.ActivityDescriptionBinding
+import com.example.yumecafeteria.internal.extension.formatAsCurrency
 import org.koin.android.ext.android.inject
 
 class DescriptionActivity : AppCompatActivity() {
@@ -33,7 +34,7 @@ class DescriptionActivity : AppCompatActivity() {
         binding.productDescriptionImage.setImageResource(R.drawable.cappucino)
         binding.productDescription.text = product.description
         binding.productDescriptionName.text = product.productName
-        binding.productDescriptionPrice.text = "R$ ${product.price}"
+        binding.productDescriptionPrice.text = product.price.formatAsCurrency()
 
         addProductToCart(product.id)
     }

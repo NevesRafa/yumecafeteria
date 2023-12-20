@@ -2,10 +2,12 @@ package com.example.yumecafeteria.presentation.cart
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.yumecafeteria.data.model.ProductCart
 import com.example.yumecafeteria.databinding.ActivityCartBinding
+import com.example.yumecafeteria.internal.extension.formatAsCurrency
 import com.example.yumecafeteria.presentation.description.DescriptionActivity
 import org.koin.android.ext.android.inject
 
@@ -25,6 +27,7 @@ class CartActivity : AppCompatActivity() {
 
         viewModel.getProductCartList()
         viewModel.updateQuantityTotal()
+        viewModel.updateTotal()
     }
 
     private fun setupViewModel() {
@@ -35,11 +38,19 @@ class CartActivity : AppCompatActivity() {
                 is CartState.Error -> {}
                 is CartState.Remove -> removeProductFromList(state.product)
                 is CartState.UpdateTotalQuantity -> totalQuantity(state.total)
+                is CartState.TotalPrice -> totalPrice(state.total)
             }
         }
     }
 
     private fun showResponse(result: List<ProductCart>) {
+        if (result.isEmpty()) {
+            binding.recyclerviewCartProduct.visibility = View.GONE
+            binding.emptyCartMessage.visibility = View.VISIBLE
+        } else {
+            binding.recyclerviewCartProduct.visibility = View.VISIBLE
+            binding.emptyCartMessage.visibility = View.GONE
+        }
         adapter.update(result)
     }
 
@@ -62,8 +73,13 @@ class CartActivity : AppCompatActivity() {
         viewModel.removeProduct(productCart)
     }
 
-    private fun totalQuantity(total: Int) {
-        binding.quantityTotal.text = total.toString()
+    private fun totalQuantity(quantity: Int) {
+        binding.quantityTotal.text = "${quantity} Und."
     }
+
+    private fun totalPrice(total: Double) {
+        binding.total.text = total.formatAsCurrency()
+    }
+
 
 }
