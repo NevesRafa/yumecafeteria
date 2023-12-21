@@ -40,7 +40,6 @@ class CartActivity : AppCompatActivity() {
                     setTotalQuantity(state.totalQuantity)
                     setTotalPrice(state.totalPrice)
                 }
-
                 is CartState.Error -> {}
             }
         }
@@ -83,7 +82,7 @@ class CartActivity : AppCompatActivity() {
     }
 
     private fun setTotalQuantity(quantity: Int) {
-        binding.quantityTotal.text = quantity.formatAsCustomUnit("Unid")
+        binding.quantityTotal.text = quantity.formatAsCustomUnit()
     }
 
     private fun setTotalPrice(total: Double) {

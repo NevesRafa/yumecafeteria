@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity
 data class ProductOrder(
     @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
+    val id: Long = 0L,
     val productId: Long,
     val orderId: Long,
     val quantity: Int,

@@ -9,10 +9,10 @@ fun Double.formatAsCurrency(): String {
     return numberFormat.format(this)
 }
 
-fun Int.formatAsCustomUnit(unit: String): String {
+fun Int.formatAsCustomUnit(): String {
     return when (this) {
-        0 -> "0 ${unit}."
-        1 -> "1 ${unit}."
-        else -> "$this ${unit}s."
+        0 -> "0 unit."
+        1 -> "1 unit."
+        else -> "$this units."
     }
 }

@@ -8,4 +8,6 @@
     <string name="total">Total</string>
     <string name="finalize_purchase">Finalizar Compra</string>
     <string name="empty_cart_message">Café e felicidade no mesmo carrinho.\n Que tal começar a sua jornada? ☕🛒</string>
+    <string name="more_details">mais detalhes...</string>
+    <string name="total_order_quantity">Quantidade total do pedido</string>
 </resources>

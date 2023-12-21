@@ -30,7 +30,7 @@
         app:layout_constraintTop_toTopOf="@id/top_shape" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview_cart_product"
+        android:id="@+id/recyclerview_orders"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="8dp"

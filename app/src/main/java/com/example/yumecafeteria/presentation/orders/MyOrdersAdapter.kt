@@ -1,10 +1,14 @@
 package com.example.yumecafeteria.presentation.orders
 
+import android.text.SpannableString
+import android.text.style.UnderlineSpan
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yumecafeteria.data.model.ProductOrder
 import com.example.yumecafeteria.databinding.ItemHistoryOrderBinding
+import com.example.yumecafeteria.internal.extension.formatAsCustomUnit
+
 
 class MyOrdersAdapter() : RecyclerView.Adapter<OrdersListViewHolder>() {
 
@@ -21,7 +25,7 @@ class MyOrdersAdapter() : RecyclerView.Adapter<OrdersListViewHolder>() {
 
     override fun getItemCount() = dataset.size
 
-    fun addProductList(list: List<ProductOrder>) {
+    fun update(list: List<ProductOrder>) {
         dataset.addAll(list)
         notifyDataSetChanged()
     }
@@ -31,6 +35,12 @@ class OrdersListViewHolder(private val binding: ItemHistoryOrderBinding) : Recyc
 
     fun bind(productOrder: ProductOrder) {
 
+        binding.orderNumber.text = "Pedido concluído - N°${productOrder.orderId}"
+        binding.orderQuantityTotal.text = productOrder.quantity.formatAsCustomUnit()
+
+        val content = SpannableString("Content")
+        content.setSpan(UnderlineSpan(), 0, content.length, 0)
+        binding.more.text = content
 
     }
 }

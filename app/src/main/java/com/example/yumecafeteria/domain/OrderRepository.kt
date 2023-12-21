@@ -6,6 +6,7 @@ import com.example.yumecafeteria.data.local.dao.ProductOrderDao
 import com.example.yumecafeteria.data.model.Orders
 import com.example.yumecafeteria.data.model.Product
 import com.example.yumecafeteria.data.model.ProductCart
+import com.example.yumecafeteria.data.model.ProductOrder
 import com.example.yumecafeteria.data.model.ProductOrderMapper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -95,6 +96,12 @@ class OrderRepository(
                 productOrderDao.save(ProductOrderMapper.map(it, orderId))
             }
 
+        }
+    }
+
+    suspend fun getAllOrders(): List<ProductOrder> {
+        return withContext(Dispatchers.IO) {
+            productOrderDao.getAll()
         }
     }
 }

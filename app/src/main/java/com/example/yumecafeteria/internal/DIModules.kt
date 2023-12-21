@@ -7,6 +7,7 @@ import com.example.yumecafeteria.presentation.cart.CartViewModel
 import com.example.yumecafeteria.presentation.description.DescriptionViewModel
 import com.example.yumecafeteria.presentation.home.HomeViewModel
 import com.example.yumecafeteria.presentation.menu.MenuViewModel
+import com.example.yumecafeteria.presentation.orders.MyOrdersViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -37,5 +38,6 @@ val appModule = module {
     viewModel { MenuViewModel(get()) }
     viewModel { DescriptionViewModel(get()) }
     viewModel { CartViewModel(get()) }
+    viewModel { MyOrdersViewModel(get()) }
 
 }
