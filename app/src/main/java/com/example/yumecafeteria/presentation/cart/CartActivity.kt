@@ -3,7 +3,6 @@ package com.example.yumecafeteria.presentation.cart
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.yumecafeteria.data.model.ProductCart
@@ -92,7 +91,9 @@ class CartActivity : AppCompatActivity() {
     private fun createOrder() {
         binding.fabFinalizePurchase.setOnClickListener {
             viewModel.createOrder()
-            Toast.makeText(this, "Compra concluida com sucesso!!!", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, SuccessfulPurchaseActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 
