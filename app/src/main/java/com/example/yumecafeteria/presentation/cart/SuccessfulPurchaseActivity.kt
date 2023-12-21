@@ -4,8 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.yumecafeteria.databinding.ActivitySuccessfulPurchaseBinding
-import com.example.yumecafeteria.presentation.menu.MenuActivity
-import com.example.yumecafeteria.presentation.orders.MyOrdersActivity
+import com.example.yumecafeteria.presentation.home.HomeActivity
 
 class SuccessfulPurchaseActivity : AppCompatActivity() {
 
@@ -15,22 +14,12 @@ class SuccessfulPurchaseActivity : AppCompatActivity() {
         binding = ActivitySuccessfulPurchaseBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        backToMenu()
-        openMyOrders()
-
+        backToHome()
     }
 
-    private fun backToMenu() {
+    private fun backToHome() {
         binding.btnBackToMenu.setOnClickListener {
-            val intent = Intent(this, MenuActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-    }
-
-    private fun openMyOrders() {
-        binding.btnMyOrders.setOnClickListener {
-            val intent = Intent(this, MyOrdersActivity::class.java)
+            val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
             finish()
         }

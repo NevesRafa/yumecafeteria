@@ -22,7 +22,14 @@ class OrderRepository(
     suspend fun addProductToCartById(id: Long) {
         withContext(Dispatchers.IO) {
             val product = productDao.searchId(id)
-            productCartList.add(ProductCart(product, 1))
+
+            val existingProduct = productCartList.find { it.product.id == id }
+
+            if (existingProduct != null) {
+                existingProduct.quantity++
+            } else {
+                productCartList.add(ProductCart(product, 1))
+            }
         }
     }
 
@@ -59,19 +66,13 @@ class OrderRepository(
     }
 
     fun increaseQuantity(productId: Long) {
-
         val existingProduct = productCartList.find { it.product.id == productId }
-
-        if (existingProduct != null) {
-            existingProduct.quantity++
-        }
+        existingProduct!!.quantity++
     }
 
     fun decreaseQuantity(productId: Long) {
-
         val existingProduct = productCartList.find { it.product.id == productId }
-
-        if (existingProduct != null && existingProduct.quantity != 1) {
+        if (existingProduct!!.quantity != 1) {
             existingProduct.quantity--
         }
     }
@@ -92,10 +93,9 @@ class OrderRepository(
         withContext(Dispatchers.IO) {
             val orderId = ordersDao.save(Orders())
             productCartList.forEach {
-
                 productOrderDao.save(ProductOrderMapper.map(it, orderId))
             }
-
+            productCartList.clear()
         }
     }
 
