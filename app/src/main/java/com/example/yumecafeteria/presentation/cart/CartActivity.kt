@@ -26,6 +26,10 @@ class CartActivity : AppCompatActivity() {
         setupProductOrderList()
         setupViewModel()
         createOrder()
+    }
+
+    override fun onResume() {
+        super.onResume()
 
         viewModel.getProductCartList()
     }

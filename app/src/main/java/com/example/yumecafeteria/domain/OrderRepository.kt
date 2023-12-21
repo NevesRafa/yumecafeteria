@@ -3,8 +3,9 @@ package com.example.yumecafeteria.domain
 import com.example.yumecafeteria.data.local.dao.OrdersDao
 import com.example.yumecafeteria.data.local.dao.ProductDao
 import com.example.yumecafeteria.data.local.dao.ProductOrderDao
-import com.example.yumecafeteria.data.model.Orders
-import com.example.yumecafeteria.data.model.Product
+import com.example.yumecafeteria.data.local.entity.OrderEntity
+import com.example.yumecafeteria.data.local.entity.ProductEntity
+import com.example.yumecafeteria.data.model.Order
 import com.example.yumecafeteria.data.model.ProductCart
 import com.example.yumecafeteria.data.model.ProductOrder
 import com.example.yumecafeteria.data.model.ProductOrderMapper
@@ -43,12 +44,12 @@ class OrderRepository(
         }
     }
 
-    fun sumTotalQuantity(): Int {
+    fun getCartQuantity(): Int {
 
         var quantity = 0
 
         if (productCartList.isNotEmpty()) {
-            quantity = productCartList.sumBy { it.quantity }
+            quantity = productCartList.sumOf { it.quantity }
         }
 
         return quantity
@@ -59,7 +60,7 @@ class OrderRepository(
         var total = 0.0
 
         if (productCartList.isNotEmpty()) {
-            total = productCartList.sumByDouble { it.product.price * it.quantity }
+            total = productCartList.sumOf { it.product.price * it.quantity }
         }
 
         return total
@@ -67,12 +68,16 @@ class OrderRepository(
 
     fun increaseQuantity(productId: Long) {
         val existingProduct = productCartList.find { it.product.id == productId }
-        existingProduct!!.quantity++
+
+        if (existingProduct != null) {
+            existingProduct.quantity++
+        }
     }
 
     fun decreaseQuantity(productId: Long) {
         val existingProduct = productCartList.find { it.product.id == productId }
-        if (existingProduct!!.quantity != 1) {
+
+        if (existingProduct != null && existingProduct!!.quantity != 1) {
             existingProduct.quantity--
         }
     }
@@ -83,7 +88,7 @@ class OrderRepository(
         }
     }
 
-    suspend fun getAllProducts(): List<Product> {
+    suspend fun getAllProducts(): List<ProductEntity> {
         return withContext(Dispatchers.IO) {
             productDao.getAll()
         }
@@ -91,7 +96,7 @@ class OrderRepository(
 
     suspend fun createOrder() {
         withContext(Dispatchers.IO) {
-            val orderId = ordersDao.save(Orders())
+            val orderId = ordersDao.save(OrderEntity())
             productCartList.forEach {
                 productOrderDao.save(ProductOrderMapper.map(it, orderId))
             }
@@ -99,9 +104,38 @@ class OrderRepository(
         }
     }
 
-    suspend fun getAllOrders(): List<ProductOrder> {
+    suspend fun getAllOrders(): List<Order> {
         return withContext(Dispatchers.IO) {
-            productOrderDao.getAll()
+            // cria uma lista de pedidos
+            val orderList = mutableListOf<Order>()
+
+            // pega a lista de pedidos
+            val orderListFromDao = ordersDao.getAll()
+
+            // passa por todos os pedidos
+            orderListFromDao.forEach { order ->
+                var totalProductsCount = 0
+                var totalPrice = 0.0
+                val productList = mutableListOf<ProductOrder>()
+
+                // pega a lista de produtos de um determindado pedido
+                val productListFromDao = productOrderDao.getAllByOrder(order.id)
+
+                //pra cada produto desse, faz o map pra um ProductOrder
+                // e adiciona na lista de ProductOrder
+                productListFromDao.forEach { productOrder ->
+                    val product = productDao.searchId(productOrder.productId)
+                    totalProductsCount += productOrder.quantity
+                    totalPrice += product.price * productOrder.quantity
+
+                    productList.add(ProductOrder(product, productOrder.quantity))
+                }
+
+                // adiciona a lista mapeada na lista de pedidos
+                orderList.add(Order(order.id, productList, totalProductsCount, totalPrice))
+            }
+
+            return@withContext orderList
         }
     }
 }

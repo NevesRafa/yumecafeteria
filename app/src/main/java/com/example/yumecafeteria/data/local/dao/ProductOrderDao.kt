@@ -5,20 +5,19 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import com.example.yumecafeteria.data.model.ProductOrder
+import com.example.yumecafeteria.data.local.entity.ProductOrderEntity
 
 @Dao
 interface ProductOrderDao {
-
-    @Query("SELECT * FROM productOrder")
-    suspend fun getAll(): List<ProductOrder>
-
     @Insert
-    suspend fun save(order: ProductOrder)
+    suspend fun save(order: ProductOrderEntity)
 
     @Delete
-    suspend fun remove(order: ProductOrder)
+    suspend fun remove(order: ProductOrderEntity)
 
     @Update
-    suspend fun update(order: ProductOrder)
+    suspend fun update(order: ProductOrderEntity)
+
+    @Query("SELECT * FROM ProductOrderEntity WHERE id = :orderId")
+    suspend fun getAllByOrder(orderId: Long): List<ProductOrderEntity>
 }

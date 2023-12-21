@@ -5,24 +5,24 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import com.example.yumecafeteria.data.model.Product
+import com.example.yumecafeteria.data.local.entity.ProductEntity
 
 @Dao
 interface ProductDao {
 
-    @Query("SELECT * FROM product")
-    fun getAll(): List<Product>
+    @Query("SELECT * FROM ProductEntity")
+    suspend fun getAll(): List<ProductEntity>
 
     @Insert
-    fun save(productList: List<Product>)
+    suspend fun save(productList: List<ProductEntity>)
 
     @Delete
-    fun remove(product: Product)
+    suspend fun remove(product: ProductEntity)
 
     @Update
-    fun update(product: Product)
+    suspend fun update(product: ProductEntity)
 
-    @Query("SELECT * FROM product WHERE id = :id")
-    fun searchId(id: Long): Product
+    @Query("SELECT * FROM ProductEntity WHERE id = :id")
+    suspend fun searchId(id: Long): ProductEntity
 
 }

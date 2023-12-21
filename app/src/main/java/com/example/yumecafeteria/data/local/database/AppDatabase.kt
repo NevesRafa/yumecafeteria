@@ -5,15 +5,15 @@ import androidx.room.RoomDatabase
 import com.example.yumecafeteria.data.local.dao.OrdersDao
 import com.example.yumecafeteria.data.local.dao.ProductDao
 import com.example.yumecafeteria.data.local.dao.ProductOrderDao
-import com.example.yumecafeteria.data.model.Orders
-import com.example.yumecafeteria.data.model.Product
-import com.example.yumecafeteria.data.model.ProductOrder
+import com.example.yumecafeteria.data.local.entity.OrderEntity
+import com.example.yumecafeteria.data.local.entity.ProductEntity
+import com.example.yumecafeteria.data.local.entity.ProductOrderEntity
 
 @Database(
     entities = [
-        ProductOrder::class,
-        Orders::class,
-        Product::class
+        ProductOrderEntity::class,
+        OrderEntity::class,
+        ProductEntity::class
     ],
     version = 1,
     exportSchema = true

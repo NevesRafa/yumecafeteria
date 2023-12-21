@@ -4,9 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.yumecafeteria.domain.OrderRepository
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class MenuViewModel(private val repository: OrderRepository) : ViewModel() {
 
@@ -17,25 +15,13 @@ class MenuViewModel(private val repository: OrderRepository) : ViewModel() {
             loadStateLiveData.postValue(MenuState.Loading)
 
             try {
-                val productList = withContext(Dispatchers.IO) {
-                    repository.getAllProducts()
-                }
+                val productList = repository.getAllProducts()
+                val cartQuantity = repository.getCartQuantity()
 
-                loadStateLiveData.postValue(MenuState.Success(productList))
+                loadStateLiveData.postValue(MenuState.Success(productList, cartQuantity))
             } catch (error: Exception) {
                 loadStateLiveData.postValue(MenuState.Error(error.message))
             }
         }
-    }
-
-    fun getCartTotalQuantity(): Int {
-
-        var totalQuantity = 0
-
-        viewModelScope.launch {
-            totalQuantity = repository.sumTotalQuantity()
-        }
-
-        return totalQuantity
     }
 }

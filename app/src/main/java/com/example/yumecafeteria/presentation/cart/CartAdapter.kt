@@ -4,13 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yumecafeteria.R
-import com.example.yumecafeteria.data.model.Product
+import com.example.yumecafeteria.data.local.entity.ProductEntity
 import com.example.yumecafeteria.data.model.ProductCart
 import com.example.yumecafeteria.databinding.ItemProductCartBinding
 import com.example.yumecafeteria.internal.extension.formatAsCurrency
 
 class CartAdapter(
-    private val onProductClick: (Product) -> Unit,
+    private val onProductClick: (ProductEntity) -> Unit,
     private val onDeleteClick: (ProductCart) -> Unit,
     private val onUpClick: (ProductCart) -> Unit,
     private val onDownClick: (ProductCart) -> Unit,
@@ -49,7 +49,7 @@ class ProductCartListViewHolder(
 
     fun bind(
         productCart: ProductCart,
-        onProductClick: (Product) -> Unit,
+        onProductClick: (ProductEntity) -> Unit,
         onDeleteClick: (ProductCart) -> Unit,
         onUpClick: (ProductCart) -> Unit,
         onDownClick: (ProductCart) -> Unit
@@ -69,8 +69,8 @@ class ProductCartListViewHolder(
         }
 
         binding.btnIcDown.setOnClickListener {
-                onDownClick(productCart)
-                binding.quantity.text = productCart.quantity.toString()
+            onDownClick(productCart)
+            binding.quantity.text = productCart.quantity.toString()
         }
 
         binding.productCartName.text = productCart.product.productName

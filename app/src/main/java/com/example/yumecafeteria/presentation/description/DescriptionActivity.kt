@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.yumecafeteria.R
-import com.example.yumecafeteria.data.model.Product
+import com.example.yumecafeteria.data.local.entity.ProductEntity
 import com.example.yumecafeteria.databinding.ActivityDescriptionBinding
 import com.example.yumecafeteria.internal.extension.formatAsCurrency
 import org.koin.android.ext.android.inject
@@ -24,13 +24,13 @@ class DescriptionActivity : AppCompatActivity() {
         binding = ActivityDescriptionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        intent.getParcelableExtra<Product>(EXTRA_PRODUCT_DESCRIPTION)?.let {
+        intent.getParcelableExtra<ProductEntity>(EXTRA_PRODUCT_DESCRIPTION)?.let {
             loadDescription(it)
 
         }
     }
 
-    private fun loadDescription(product: Product) {
+    private fun loadDescription(product: ProductEntity) {
         binding.productDescriptionImage.setImageResource(R.drawable.cappucino)
         binding.productDescription.text = product.description
         binding.productDescriptionName.text = product.productName

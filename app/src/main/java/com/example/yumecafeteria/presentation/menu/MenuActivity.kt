@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.yumecafeteria.data.model.Product
+import com.example.yumecafeteria.data.local.entity.ProductEntity
 import com.example.yumecafeteria.databinding.ActivityMenuBinding
 import com.example.yumecafeteria.presentation.cart.CartActivity
 import com.example.yumecafeteria.presentation.description.DescriptionActivity
@@ -26,27 +26,29 @@ class MenuActivity : AppCompatActivity() {
         setupViewModel()
         setupList()
         openMyCart()
-
-        viewModel.loadProductsList()
     }
 
-    override fun onStart() {
-        super.onStart()
-        setCartQuantity()
+    override fun onResume() {
+        super.onResume()
+        viewModel.loadProductsList()
     }
 
     private fun setupViewModel() {
         viewModel.loadStateLiveData.observe(this) { state ->
             when (state) {
                 is MenuState.Loading -> showLoading()
-                is MenuState.Success -> showResponse(state.result)
+                is MenuState.Success -> {
+                    hideLoading()
+                    showResponse(state.result)
+                    setCartQuantity(state.cartQuantity)
+                }
+
                 is MenuState.Error -> {}
             }
         }
     }
 
-    private fun showResponse(result: List<Product>) {
-        hideLoading()
+    private fun showResponse(result: List<ProductEntity>) {
         adapter.addProductList(result)
     }
 
@@ -66,11 +68,11 @@ class MenuActivity : AppCompatActivity() {
             intent.putExtra(DescriptionActivity.EXTRA_PRODUCT_DESCRIPTION, product)
             startActivity(intent)
         }
+
         binding.recyclerviewProducts.apply {
             setHasFixedSize(true)
             layoutManager = GridLayoutManager(this@MenuActivity, 2, GridLayoutManager.VERTICAL, false)
             adapter = this@MenuActivity.adapter
-
         }
     }
 
@@ -81,12 +83,10 @@ class MenuActivity : AppCompatActivity() {
         }
     }
 
-    private fun setCartQuantity() {
-        val totalQuantity = viewModel.getCartTotalQuantity()
-
-        if (totalQuantity > 0) {
+    private fun setCartQuantity(cartQuantity: Int) {
+        if (cartQuantity > 0) {
             binding.badgeGroup.visibility = View.VISIBLE
-            binding.badgeText.text = totalQuantity.toString()
+            binding.badgeText.text = cartQuantity.toString()
         } else {
             binding.badgeGroup.visibility = View.GONE
         }

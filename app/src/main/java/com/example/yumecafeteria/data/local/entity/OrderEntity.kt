@@ -1,10 +1,10 @@
-package com.example.yumecafeteria.data.model
+package com.example.yumecafeteria.data.local.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class Orders(
+data class OrderEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0L
 )

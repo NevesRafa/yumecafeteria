@@ -11,8 +11,7 @@ fun Double.formatAsCurrency(): String {
 
 fun Int.formatAsCustomUnit(): String {
     return when (this) {
-        0 -> "0 unit."
-        1 -> "1 unit."
+        0, 1 -> "$this unit."
         else -> "$this units."
     }
 }

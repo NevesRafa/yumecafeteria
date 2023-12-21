@@ -3,7 +3,7 @@ package com.example.yumecafeteria.presentation.orders
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.yumecafeteria.data.model.ProductOrder
+import com.example.yumecafeteria.data.model.Order
 import com.example.yumecafeteria.databinding.ActivityMyOrdersBinding
 import org.koin.android.ext.android.inject
 
@@ -36,7 +36,7 @@ class MyOrdersActivity : AppCompatActivity() {
         }
     }
 
-    private fun showResponse(result: List<ProductOrder>) {
+    private fun showResponse(result: List<Order>) {
         adapter.update(result)
     }
 

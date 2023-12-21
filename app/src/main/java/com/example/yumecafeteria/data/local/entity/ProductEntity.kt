@@ -1,4 +1,4 @@
-package com.example.yumecafeteria.data.model
+package com.example.yumecafeteria.data.local.entity
 
 import android.os.Parcelable
 import androidx.room.Entity
@@ -7,7 +7,7 @@ import kotlinx.parcelize.Parcelize
 
 @Entity
 @Parcelize
-data class Product(
+data class ProductEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0L,
     val productName: String,
