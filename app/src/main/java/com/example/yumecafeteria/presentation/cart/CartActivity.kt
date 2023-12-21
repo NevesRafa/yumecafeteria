@@ -48,9 +48,11 @@ class CartActivity : AppCompatActivity() {
         if (result.isEmpty()) {
             binding.recyclerviewCartProduct.visibility = View.GONE
             binding.emptyCartMessage.visibility = View.VISIBLE
+            binding.fabFinalizePurchase.isEnabled = false
         } else {
             binding.recyclerviewCartProduct.visibility = View.VISIBLE
             binding.emptyCartMessage.visibility = View.GONE
+            binding.fabFinalizePurchase.isEnabled = true
         }
         adapter.update(result)
     }
