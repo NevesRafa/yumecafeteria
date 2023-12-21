@@ -69,13 +69,8 @@ class ProductCartListViewHolder(
         }
 
         binding.btnIcDown.setOnClickListener {
-            if (productCart.quantity != 1) {
                 onDownClick(productCart)
                 binding.quantity.text = productCart.quantity.toString()
-            } else {
-                return@setOnClickListener
-            }
-
         }
 
         binding.productCartName.text = productCart.product.productName

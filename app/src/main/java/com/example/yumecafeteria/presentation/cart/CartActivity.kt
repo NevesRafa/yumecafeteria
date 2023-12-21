@@ -69,10 +69,10 @@ class CartActivity : AppCompatActivity() {
                 removeProductFromList(it)
             },
             onUpClick = {
-                it.quantity++
+                viewModel.increaseQuantity(it.product.id)
             },
             onDownClick = {
-                it.quantity--
+                viewModel.decreaseQuantity(it.product.id)
             }
         )
         binding.recyclerviewCartProduct.adapter = adapter
@@ -91,8 +91,6 @@ class CartActivity : AppCompatActivity() {
     }
 
     private fun createOrder() {
-
-
         binding.fabFinalizePurchase.setOnClickListener {
             viewModel.createOrder()
             Toast.makeText(this, "Compra concluida com sucesso!!!", Toast.LENGTH_SHORT).show()

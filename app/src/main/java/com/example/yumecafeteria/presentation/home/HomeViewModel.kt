@@ -9,7 +9,7 @@ class HomeViewModel(private val repository: OrderRepository) : ViewModel() {
 
     private fun saveMockListProduct() {
         viewModelScope.launch {
-            repository.insertProducts()
+            repository.insertProductsMock()
         }
     }
 

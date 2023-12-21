@@ -57,7 +57,25 @@ class OrderRepository(
         return total
     }
 
-    suspend fun insertProducts() {
+    fun increaseQuantity(productId: Long) {
+
+        val existingProduct = productCartList.find { it.product.id == productId }
+
+        if (existingProduct != null) {
+            existingProduct.quantity++
+        }
+    }
+
+    fun decreaseQuantity(productId: Long) {
+
+        val existingProduct = productCartList.find { it.product.id == productId }
+
+        if (existingProduct != null && existingProduct.quantity != 1) {
+            existingProduct.quantity--
+        }
+    }
+
+    suspend fun insertProductsMock() {
         withContext(Dispatchers.IO) {
             productDao.save(productList)
         }

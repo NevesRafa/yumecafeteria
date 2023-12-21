@@ -33,4 +33,18 @@ class CartViewModel(private val repository: OrderRepository) : ViewModel() {
             repository.createOrder()
         }
     }
+
+    fun increaseQuantity(productId: Long) {
+        viewModelScope.launch {
+            repository.increaseQuantity(productId)
+            getProductCartList()
+        }
+    }
+
+    fun decreaseQuantity(productId: Long) {
+        viewModelScope.launch {
+            repository.decreaseQuantity(productId)
+            getProductCartList()
+        }
+    }
 }
