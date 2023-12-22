@@ -2,12 +2,12 @@ package com.example.yumecafeteria.internal
 
 import androidx.room.Room
 import com.example.yumecafeteria.data.local.database.AppDatabase
-import com.example.yumecafeteria.domain.OrderRepository
 import com.example.yumecafeteria.presentation.cart.CartViewModel
 import com.example.yumecafeteria.presentation.description.DescriptionViewModel
 import com.example.yumecafeteria.presentation.home.HomeViewModel
 import com.example.yumecafeteria.presentation.menu.MenuViewModel
 import com.example.yumecafeteria.presentation.orders.MyOrdersViewModel
+import com.example.yumecafeteria.repository.OrderRepository
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

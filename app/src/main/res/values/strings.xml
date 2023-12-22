@@ -11,4 +11,5 @@
     <string name="more_details">mais detalhes...</string>
     <string name="total_order_quantity">Quantidade total do pedido</string>
     <string name="total_order_value">Valor total do pedido</string>
+    <string name="empty_order_message">Você ainda não tem pedidos registrados.</string>
 </resources>

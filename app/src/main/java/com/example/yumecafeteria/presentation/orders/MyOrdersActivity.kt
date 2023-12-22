@@ -1,6 +1,7 @@
 package com.example.yumecafeteria.presentation.orders
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.yumecafeteria.data.model.Order
@@ -37,6 +38,10 @@ class MyOrdersActivity : AppCompatActivity() {
     }
 
     private fun showResponse(result: List<Order>) {
+        if (result.isNotEmpty()) {
+            binding.emptyCartMessage.visibility = View.GONE
+            binding.recyclerviewOrders.visibility = View.VISIBLE
+        }
         adapter.update(result)
     }
 

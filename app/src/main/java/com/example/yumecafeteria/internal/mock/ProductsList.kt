@@ -1,4 +1,4 @@
-package com.example.yumecafeteria.domain
+package com.example.yumecafeteria.internal.mock
 
 import com.example.yumecafeteria.data.local.entity.ProductEntity
 

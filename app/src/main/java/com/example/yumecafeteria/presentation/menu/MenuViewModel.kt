@@ -3,7 +3,7 @@ package com.example.yumecafeteria.presentation.menu
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.yumecafeteria.domain.OrderRepository
+import com.example.yumecafeteria.repository.OrderRepository
 import kotlinx.coroutines.launch
 
 class MenuViewModel(private val repository: OrderRepository) : ViewModel() {

@@ -3,7 +3,7 @@ package com.example.yumecafeteria.presentation.orders
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.yumecafeteria.domain.OrderRepository
+import com.example.yumecafeteria.repository.OrderRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

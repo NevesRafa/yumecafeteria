@@ -2,7 +2,7 @@ package com.example.yumecafeteria.presentation.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.yumecafeteria.domain.OrderRepository
+import com.example.yumecafeteria.repository.OrderRepository
 import kotlinx.coroutines.launch
 
 class HomeViewModel(private val repository: OrderRepository) : ViewModel() {

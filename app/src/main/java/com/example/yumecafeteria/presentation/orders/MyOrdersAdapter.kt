@@ -37,7 +37,7 @@ class OrdersListViewHolder(
 
     fun bind(order: Order) {
         binding.orderNumber.text = "Pedido concluído - N°${order.id}"
-        binding.orderQuantityTotal.text = order.totalProcutsCount.formatAsCustomUnit()
+        binding.orderQuantityTotal.text = order.totalProductsCount.formatAsCustomUnit()
         binding.orderTotalValue.text = order.totalPrice.formatAsCurrency()
 
         val productsText = StringBuilder()
