@@ -18,6 +18,6 @@ interface ProductOrderDao {
     @Update
     suspend fun update(order: ProductOrderEntity)
 
-    @Query("SELECT * FROM ProductOrderEntity WHERE id = :orderId")
+    @Query("SELECT * FROM ProductOrderEntity WHERE orderId = :orderId")
     suspend fun getAllByOrder(orderId: Long): List<ProductOrderEntity>
 }
